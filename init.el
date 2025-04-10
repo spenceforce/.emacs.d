@@ -1,5 +1,28 @@
+;; Backups
+(setq
+ backup-by-copying t      ; don't clobber symlinks
+ backup-directory-alist
+ ;; Handy to save to a server specific directory in case running
+ ;; multiple emacs servers on different hosts with NFS.
+ `(("." . ,(concat "~/.emacsbackup/" (getenv "HOSTNAME") "/")))    ; don't litter my fs tree
+ delete-old-versions t
+ kept-new-versions 6
+ kept-old-versions 2
+ version-control t)       ; use versioned backups
+
+
+;; Add column and line numbers.
+(setq
+ column-number-mode t
+ line-number-mode t)
+
+
 ;; Full screen mode on start.
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
+
+
+;; Run as a server.
+(server-start)
 
 
 ;; Add MELPA to repo.
@@ -7,6 +30,11 @@
   :config
   (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
   (package-initialize))
+
+
+;; Clean up old buffers.
+(use-package midnight
+  :ensure t)
 
 
 ;; Completion buffers.
