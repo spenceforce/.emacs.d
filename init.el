@@ -2,9 +2,7 @@
 (setq
  backup-by-copying t      ; don't clobber symlinks
  backup-directory-alist
- ;; Handy to save to a server specific directory in case running
- ;; multiple emacs servers on different hosts with NFS.
- `(("." . ,(concat "~/.emacsbackup/" (getenv "HOSTNAME") "/")))    ; don't litter my fs tree
+ `(("." . ,(expand-file-name "~/.emacsbackup")))    ; don't litter my fs tree
  delete-old-versions t
  kept-new-versions 6
  kept-old-versions 2
