@@ -9,6 +9,10 @@
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 
 
+;; Automatic paren matching.
+(electric-pair-mode 1)
+
+
 ;; Run as a server.
 (server-start)
 
