@@ -13,6 +13,10 @@
 (electric-pair-mode 1)
 
 
+;; Start async shell in a new buffer.
+(setq async-shell-command-buffer 'new-buffer)
+
+
 ;; Run as a server.
 (server-start)
 
