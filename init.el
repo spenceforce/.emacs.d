@@ -81,7 +81,8 @@
 
 
 ;; Any host specific config should go in `init-extra.el`.
-(load "init-extra.el" t)
+;; No error will be thrown if it doesn't exist.
+(load (locate-user-emacs-file "init-extra.el") t)
 
 
 (put 'dired-find-alternate-file 'disabled nil)
