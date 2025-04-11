@@ -42,7 +42,8 @@
 (use-package copilot-chat
   :ensure t
   :config
-  (add-hook 'git-commit-setup-hook 'copilot-chat-insert-commit-message))
+  (when (functionp 'json-parse-string)
+    (add-hook 'git-commit-setup-hook 'copilot-chat-insert-commit-message)))
 
 
 ;; Magit because of course.
@@ -60,6 +61,7 @@
   :ensure t
   :config
   (load-theme 'modus-vivendi :no-confirm))
+
 
 ;; General emacs settings.
 (use-package emacs
