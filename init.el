@@ -32,9 +32,6 @@
   :custom
   (conda-anaconda-home (car (seq-filter #'file-exists-p (mapcar #'expand-file-name '("~/anaconda3" "~/miniforge3" )))))
   :config
-  (conda-env-autoactivate-mode t)
-  (add-hook 'find-file-hook (lambda () (when (bound-and-true-p conda-project-env-path)
-                                         (conda-env-activate-for-buffer))))
   (conda-mode-line-setup))
 
 
