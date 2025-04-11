@@ -23,21 +23,26 @@
 (use-package corfu
   :ensure t
   :init
-  (global-corfu-mode)
+  (global-corfu-mode))
 
 
 ;; Conda env support.
 (use-package conda
   :ensure t
+  :custom
+  (conda-anaconda-home (car (seq-filter #'file-exists-p (mapcar #'expand-file-name '("~/anaconda3" "~/miniforge3" )))))
   :config
   (conda-env-autoactivate-mode t)
   (add-hook 'find-file-hook (lambda () (when (bound-and-true-p conda-project-env-path)
                                          (conda-env-activate-for-buffer))))
-  (custom-set-variables
-   ;; TODO: Search common conda env dirs for one that exists.
-   ;; Replace dir with correct path if different.
-   '(conda-anaconda-home (expand-file-name "~/miniforge3")))
   (conda-mode-line-setup))
+
+
+;; LLM support.
+(use-package copilot-chat
+  :ensure t
+  :config
+  (add-hook 'git-commit-setup-hook 'copilot-chat-insert-commit-message))
 
 
 ;; Magit because of course.
@@ -72,7 +77,11 @@
   ; Automatic paren matching.
   (electric-pair-mode 1)
   ; Run as a server.
-  (server-start)
-  )
+  (server-start))
+
+
+;; Any host specific config should go in `init-extra.el`.
+(load "init-extra.el" t)
+
 
 (put 'dired-find-alternate-file 'disabled nil)
