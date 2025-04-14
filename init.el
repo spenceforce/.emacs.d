@@ -32,9 +32,6 @@
   :custom
   (conda-anaconda-home (car (seq-filter #'file-exists-p (mapcar #'expand-file-name '("~/anaconda3" "~/miniforge3" )))))
   :config
-  (conda-env-autoactivate-mode t)
-  (add-hook 'find-file-hook (lambda () (when (bound-and-true-p conda-project-env-path)
-                                         (conda-env-activate-for-buffer))))
   (conda-mode-line-setup))
 
 
@@ -42,7 +39,8 @@
 (use-package copilot-chat
   :ensure t
   :config
-  (add-hook 'git-commit-setup-hook 'copilot-chat-insert-commit-message))
+  (when (functionp 'json-parse-string)
+    (add-hook 'git-commit-setup-hook 'copilot-chat-insert-commit-message)))
 
 
 ;; Magit because of course.
@@ -60,6 +58,7 @@
   :ensure t
   :config
   (load-theme 'modus-vivendi :no-confirm))
+
 
 ;; General emacs settings.
 (use-package emacs
