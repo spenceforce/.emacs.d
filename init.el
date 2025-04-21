@@ -1,16 +1,16 @@
-;; Add MELPA to repo.
+;;; Add MELPA to repo.
 (use-package package
   :config
   (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
   (package-initialize))
 
 
-;; Clean up old buffers.
+;;; Clean up old buffers.
 (use-package midnight
   :ensure t)
 
 
-;; Completion buffers.
+;;; Completion buffers.
 (use-package ivy
   :ensure t
   :config
@@ -19,14 +19,14 @@
   (setopt ivy-count-format "(%d/%d) "))
 
 
-;; Completion at point.
+;;; Completion at point.
 (use-package corfu
   :ensure t
   :init
   (global-corfu-mode))
 
 
-;; Conda env support.
+;;; Conda env support.
 (use-package conda
   :ensure t
   :custom
@@ -35,7 +35,7 @@
   (conda-mode-line-setup))
 
 
-;; LLM support.
+;;; GitHub Copilot
 (use-package copilot-chat
   :ensure t
   :config
@@ -50,24 +50,39 @@
   (add-to-list 'copilot-indentation-alist '(emacs-lisp-mode 2)))
 
 
-;; Magit because of course.
+;;; GPT chatbot
+(use-package gptel
+  :ensure t)
+
+
+;;; AI pair programming
+(use-package aidermacs
+  ;; Set API key in `init-extra.el`.
+  :ensure t
+  :bind
+  (("C-c a" . aidermacs-transient-menu))
+  :custom
+  (aidermacs-use-architect-mode t))
+
+
+;;; Magit because of course.
 (use-package magit
   :ensure t)
 
 
-;; Better defaults please.
+;;; Better defaults please.
 (use-package better-defaults
   :ensure t)
 
 
-;; Theme time.
+;;; Theme time.
 (use-package modus-themes
   :ensure t
   :config
   (load-theme 'modus-vivendi :no-confirm))
 
 
-;; General emacs settings.
+;;; General emacs settings.
 (use-package emacs
   :custom
   ; Add column and line numbers to bar.
@@ -86,9 +101,10 @@
   (server-start))
 
 
-;; Any host specific config should go in `init-extra.el`.
-;; No error will be thrown if it doesn't exist.
-(load (locate-user-emacs-file "init-extra.el") t)
+;;; Any host specific config to be run after initialization
+;;; should go in `init-post.el`.
+;;; No error will be thrown if it doesn't exist.
+(load (locate-user-emacs-file "init-post.el") t)
 
 
 (put 'dired-find-alternate-file 'disabled nil)
