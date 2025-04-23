@@ -62,7 +62,8 @@
   :bind
   (("C-c a" . aidermacs-transient-menu))
   :custom
-  (aidermacs-use-architect-mode t))
+  (aidermacs-use-architect-mode t)
+  (aidermacs-show-diff-after-change t))
 
 
 ;;; Magit because of course.
