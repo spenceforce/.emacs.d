@@ -62,7 +62,8 @@
   :bind
   (("C-c a" . aidermacs-transient-menu))
   :custom
-  (aidermacs-use-architect-mode t))
+  (aidermacs-use-architect-mode t)
+  (aidermacs-show-diff-after-change t))
 
 
 ;;; Magit because of course.
@@ -90,6 +91,8 @@
   (line-number-mode t)
   ; Start async shell in a new buffer.
   (async-shell-command-buffer 'new-buffer)
+  ; Human readable file sizes.
+  (dired-listing-switches "-alh")
   :config
   ; Display line numbers in program buffer sidebar.
   (add-hook 'prog-mode-hook 'display-line-numbers-mode)
