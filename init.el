@@ -1,3 +1,7 @@
+;;; Emacs init file.
+;;; Any custom or host specific configuration should be placed in `~/.emacs.d/site-lisp/default.el`.
+
+
 ;;; Add MELPA to repo.
 (use-package package
   :config
@@ -83,6 +87,16 @@
   (load-theme 'modus-vivendi :no-confirm))
 
 
+;;; Org mode.
+(use-package org
+  :ensure t
+  :custom
+  (org-log-done t)
+  :config
+  (define-key global-map "\C-cl" 'org-store-link)
+  (define-key global-map "\C-ca" 'org-agenda))
+
+
 ;;; General emacs settings.
 (use-package emacs
   :custom
@@ -94,6 +108,8 @@
   ; Human readable file sizes.
   (dired-listing-switches "-alh")
   :config
+  ;; Add `~/.emacs.d/site-lisp` to load path.
+  (add-to-list 'load-path (expand-file-name "site-lisp" user-emacs-directory))
   ; Display line numbers in program buffer sidebar.
   (add-hook 'prog-mode-hook 'display-line-numbers-mode)
   ; Maximize window when using GUI.
@@ -102,12 +118,6 @@
   (electric-pair-mode 1)
   ; Run as a server.
   (server-start))
-
-
-;;; Any host specific config to be run after initialization
-;;; should go in `init-post.el`.
-;;; No error will be thrown if it doesn't exist.
-(load (locate-user-emacs-file "init-post.el") t)
 
 
 (put 'dired-find-alternate-file 'disabled nil)
