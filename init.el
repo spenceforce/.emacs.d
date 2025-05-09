@@ -39,6 +39,14 @@
   (conda-mode-line-setup))
 
 
+;;; IPython REPL cause it's better than Python.
+(use-package python
+  :ensure t
+  :custom
+  (python-shell-interpreter "ipython")
+  (python-shell-interpreter-args "--simple-prompt -i --InteractiveShell.display_page=True"))
+
+
 ;;; GitHub Copilot
 (use-package copilot-chat
   :ensure t
@@ -64,7 +72,7 @@
   ;; Set API key in `init-extra.el`.
   :ensure t
   :bind
-  (("C-c a" . aidermacs-transient-menu))
+  (("C-c c" . aidermacs-transient-menu))
   :custom
   (aidermacs-use-architect-mode t)
   (aidermacs-show-diff-after-change t))
@@ -100,23 +108,23 @@
 ;;; General emacs settings.
 (use-package emacs
   :custom
-  ; Add column and line numbers to bar.
+  ;; Add column and line numbers to bar.
   (column-number-mode t)
   (line-number-mode t)
-  ; Start async shell in a new buffer.
+  ;; Start async shell in a new buffer.
   (async-shell-command-buffer 'new-buffer)
-  ; Human readable file sizes.
+  ;; Human readable file sizes.
   (dired-listing-switches "-alh")
   :config
   ;; Add `~/.emacs.d/site-lisp` to load path.
   (add-to-list 'load-path (expand-file-name "site-lisp" user-emacs-directory))
-  ; Display line numbers in program buffer sidebar.
+  ;; Display line numbers in program buffer sidebar.
   (add-hook 'prog-mode-hook 'display-line-numbers-mode)
-  ; Maximize window when using GUI.
+  ;; Maximize window when using GUI.
   (add-to-list 'default-frame-alist '(fullscreen . maximized))
-  ; Automatic paren matching.
+  ;; Automatic paren matching.
   (electric-pair-mode 1)
-  ; Run as a server.
+  ;; Run as a server.
   (server-start))
 
 
