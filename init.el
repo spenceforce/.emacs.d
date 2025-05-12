@@ -101,6 +101,11 @@
   :custom
   (org-log-done t)
   (org-todo-keywords '((sequence "TODO" "ACTIVE" "|" "DONE")))
+  (org-agenda-files '("~/org/inbox.org"
+                      "~/org/next.org"
+                      "~/org/projects.org"
+                      "~/org/calendar.org"
+                      "~/org/someday.org"))
   (org-capture-templates
    '(("t" "Todo [inbox]" entry
          (file+headline "~/org/inbox.org" "Inbox")
