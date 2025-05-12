@@ -106,14 +106,19 @@
                       "~/org/projects.org"
                       "~/org/calendar.org"
                       "~/org/someday.org"))
+  (org-refile-targets
+      '(("~/org/next.org" :maxlevel . 2)
+        ("~/org/projects.org" :maxlevel . 2)
+        ("~/org/someday.org" :maxlevel . 2)
+        ("~/org/reference.org" :maxlevel . 2)))
   (org-capture-templates
    '(("t" "Todo [inbox]" entry
          (file+headline "~/org/inbox.org" "Inbox")
          "* TODO %?\n  %U\n")))
   :config
-  (define-key global-map "\C-cl" 'org-store-link)
-  (define-key global-map "\C-ca" 'org-agenda)
-  (define-key global-map "\C-cc" 'org-capture))
+  (define-key global-map "\C-c l" 'org-store-link)
+  (define-key global-map "\C-c a" 'org-agenda)
+  (define-key global-map "\C-c c" 'org-capture))
 
 
 ;;; General emacs settings.
