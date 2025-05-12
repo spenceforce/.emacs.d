@@ -102,18 +102,13 @@
   (org-log-done t)
   (org-todo-keywords '((sequence "TODO" "ACTIVE" "|" "DONE")))
   (org-capture-templates
-   `(("i" "Inbox" entry  (file "inbox.org")
-      ,(concat "* TODO %?\n"
-               "/Entered on/ %U"))))
+   '(("t" "Todo [inbox]" entry
+         (file+headline "~/org/inbox.org" "Inbox")
+         "* TODO %?\n  %U\n")))
   :config
-  (defun org-capture-inbox ()
-     (interactive)
-     (call-interactively 'org-store-link)
-     (org-capture nil "i"))
   (define-key global-map "\C-cl" 'org-store-link)
   (define-key global-map "\C-ca" 'org-agenda)
-  (define-key global-map "\C-cc" 'org-capture)
-  (define-key global-map (kbd "C-c i") 'org-capture-inbox))
+  (define-key global-map "\C-cc" 'org-capture))
 
 
 ;;; General emacs settings.
