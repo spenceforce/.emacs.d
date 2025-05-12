@@ -100,6 +100,7 @@
   :ensure t
   :custom
   (org-log-done t)
+  (org-todo-keywords '((sequence "TODO" "ACTIVE" "|" "DONE")))
   :config
   (define-key global-map "\C-cl" 'org-store-link)
   (define-key global-map "\C-ca" 'org-agenda))
