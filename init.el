@@ -114,7 +114,7 @@
   (org-capture-templates
    '(("t" "Todo [inbox]" entry
          (file+headline "~/org/inbox.org" "Inbox")
-         "* TODO %?\n  %U\n")))
+         "* TODO %?\n")))
   :config
   (define-key global-map "\C-c l" 'org-store-link)
   (define-key global-map "\C-c a" 'org-agenda)
