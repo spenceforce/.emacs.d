@@ -72,7 +72,7 @@
   ;; Set API key in `init-extra.el`.
   :ensure t
   :bind
-  (("C-c c" . aidermacs-transient-menu))
+  (("C-c C-c" . aidermacs-transient-menu))
   :custom
   (aidermacs-use-architect-mode t)
   (aidermacs-show-diff-after-change t))
@@ -101,9 +101,19 @@
   :custom
   (org-log-done t)
   (org-todo-keywords '((sequence "TODO" "ACTIVE" "|" "DONE")))
+  (org-capture-templates
+   `(("i" "Inbox" entry  (file "inbox.org")
+      ,(concat "* TODO %?\n"
+               "/Entered on/ %U"))))
   :config
+  (defun org-capture-inbox ()
+     (interactive)
+     (call-interactively 'org-store-link)
+     (org-capture nil "i"))
   (define-key global-map "\C-cl" 'org-store-link)
-  (define-key global-map "\C-ca" 'org-agenda))
+  (define-key global-map "\C-ca" 'org-agenda)
+  (define-key global-map "\C-cc" 'org-capture)
+  (define-key global-map (kbd "C-c i") 'org-capture-inbox))
 
 
 ;;; General emacs settings.
