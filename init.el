@@ -100,11 +100,11 @@
   :ensure t
   :custom
   (org-log-done t)
-  (org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")))
-  (org-agenda-files '("~/org/inbox.org"
-                      "~/org/next.org"
-                      "~/org/projects"
-                      "~/org/someday.org"))
+  (org-todo-keywords '((sequence "TODO" "NEXT" "|" "DONE")))
+  (org-agenda-files '("~/org/inbox.org" ;Capture todos
+                      "~/org/tasks.org" ;One off tasks
+                      "~/org/projects"  ;All project org files
+                      "~/org/someday.org")) ;Someday/future ideas
   (org-refile-targets '((org-agenda-files :maxlevel . 1)))
   (org-capture-templates
    '(("t" "Todo [inbox]" entry
