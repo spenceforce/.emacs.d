@@ -113,7 +113,13 @@
   :config
   (define-key global-map "\C-c l" 'org-store-link)
   (define-key global-map "\C-c a" 'org-agenda)
-  (define-key global-map "\C-c c" 'org-capture))
+  (define-key global-map "\C-c c" 'org-capture)
+  ;; Automatically save all org buffers after refile.
+  (advice-add 'org-refile         :after (lambda (&rest _) (org-save-all-org-buffers)))
+  (advice-add 'org-deadline       :after (lambda (&rest _) (org-save-all-org-buffers)))
+  (advice-add 'org-schedule       :after (lambda (&rest _) (org-save-all-org-buffers)))
+  (advice-add 'org-store-log-note :after (lambda (&rest _) (org-save-all-org-buffers)))
+  (advice-add 'org-todo           :after (lambda (&rest _) (org-save-all-org-buffers))))
 
 
 ;;; General emacs settings.
