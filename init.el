@@ -72,7 +72,7 @@
   ;; Set API key in `init-extra.el`.
   :ensure t
   :bind
-  (("C-c C-c" . aidermacs-transient-menu))
+  (("C-c j" . aidermacs-transient-menu))
   :custom
   (aidermacs-use-architect-mode t)
   (aidermacs-show-diff-after-change t))
@@ -100,17 +100,12 @@
   :ensure t
   :custom
   (org-log-done t)
-  (org-todo-keywords '((sequence "TODO" "ACTIVE" "|" "DONE")))
+  (org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")))
   (org-agenda-files '("~/org/inbox.org"
                       "~/org/next.org"
-                      "~/org/projects.org"
-                      "~/org/calendar.org"
+                      "~/org/projects"
                       "~/org/someday.org"))
-  (org-refile-targets
-      '(("~/org/next.org" :maxlevel . 2)
-        ("~/org/projects.org" :maxlevel . 2)
-        ("~/org/someday.org" :maxlevel . 2)
-        ("~/org/reference.org" :maxlevel . 2)))
+  (org-refile-targets '((org-agenda-files :maxlevel . 1)))
   (org-capture-templates
    '(("t" "Todo [inbox]" entry
          (file+headline "~/org/inbox.org" "Inbox")
