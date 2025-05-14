@@ -98,6 +98,10 @@
 ;;; Org mode.
 (use-package org
   :ensure t
+  :bind
+  (("C-c l" . org-store-link)
+   ("C-c a" . org-agenda)
+   ("C-c c" . org-capture))
   :custom
   (org-log-done t)
   (org-todo-keywords '((sequence "TODO" "NEXT" "|" "DONE")))
@@ -111,9 +115,6 @@
          (file+headline "~/org/inbox.org" "Inbox")
          "* TODO %?\n")))
   :config
-  (define-key global-map "\C-c l" 'org-store-link)
-  (define-key global-map "\C-c a" 'org-agenda)
-  (define-key global-map "\C-c c" 'org-capture)
   ;; Automatically save all org buffers after org operations.
   (advice-add 'org-refile         :after (lambda (&rest _) (org-save-all-org-buffers)))
   (advice-add 'org-deadline       :after (lambda (&rest _) (org-save-all-org-buffers)))
