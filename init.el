@@ -69,7 +69,7 @@
 
 ;;; AI pair programming
 (use-package aidermacs
-  ;; Set API key in `site-packages/default.el`.
+  ;; Set API key in `site-lisp/default.el`.
   :ensure t
   :bind
   (("C-c j" . aidermacs-transient-menu))
