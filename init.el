@@ -69,10 +69,10 @@
 
 ;;; AI pair programming
 (use-package aidermacs
-  ;; Set API key in `init-extra.el`.
+  ;; Set API key in `site-lisp/default.el`.
   :ensure t
   :bind
-  (("C-c C-c" . aidermacs-transient-menu))
+  (("C-c j" . aidermacs-transient-menu))
   :custom
   (aidermacs-use-architect-mode t)
   (aidermacs-show-diff-after-change t))
@@ -98,27 +98,29 @@
 ;;; Org mode.
 (use-package org
   :ensure t
+  :bind
+  (("C-c l" . org-store-link)
+   ("C-c a" . org-agenda)
+   ("C-c c" . org-capture))
   :custom
   (org-log-done t)
-  (org-todo-keywords '((sequence "TODO" "ACTIVE" "|" "DONE")))
-  (org-agenda-files '("~/org/inbox.org"
-                      "~/org/next.org"
-                      "~/org/projects.org"
-                      "~/org/calendar.org"
-                      "~/org/someday.org"))
-  (org-refile-targets
-      '(("~/org/next.org" :maxlevel . 2)
-        ("~/org/projects.org" :maxlevel . 2)
-        ("~/org/someday.org" :maxlevel . 2)
-        ("~/org/reference.org" :maxlevel . 2)))
+  (org-todo-keywords '((sequence "TODO" "NEXT" "|" "DONE")))
+  (org-agenda-files '("~/org/inbox.org" ;Capture todos
+                      "~/org/tasks.org" ;One off tasks
+                      "~/org/projects"  ;All project org files
+                      "~/org/someday.org")) ;Someday/future ideas
+  (org-refile-targets '((org-agenda-files :maxlevel . 1)))
   (org-capture-templates
    '(("t" "Todo [inbox]" entry
          (file+headline "~/org/inbox.org" "Inbox")
          "* TODO %?\n")))
   :config
-  (define-key global-map "\C-c l" 'org-store-link)
-  (define-key global-map "\C-c a" 'org-agenda)
-  (define-key global-map "\C-c c" 'org-capture))
+  ;; Automatically save all org buffers after org operations.
+  (advice-add 'org-refile         :after (lambda (&rest _) (org-save-all-org-buffers)))
+  (advice-add 'org-deadline       :after (lambda (&rest _) (org-save-all-org-buffers)))
+  (advice-add 'org-schedule       :after (lambda (&rest _) (org-save-all-org-buffers)))
+  (advice-add 'org-store-log-note :after (lambda (&rest _) (org-save-all-org-buffers)))
+  (advice-add 'org-todo           :after (lambda (&rest _) (org-save-all-org-buffers))))
 
 
 ;;; General emacs settings.
