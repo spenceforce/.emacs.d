@@ -17,6 +17,8 @@
 ;;; Completion buffers.
 (use-package ivy
   :ensure t
+  :custom
+  (ivy-use-selectable-prompt t)
   :config
   (ivy-mode 1)
   (setopt ivy-use-virtual-buffers t)
@@ -114,6 +116,8 @@
    '(("t" "Todo [inbox]" entry
          (file+headline "~/org/inbox.org" "Inbox")
          "* TODO %?\n")))
+  (org-agenda-custom-commands
+   '(("n" "List of all NEXT entries" todo "NEXT")))
   :config
   ;; Automatically save all org buffers after org operations.
   (advice-add 'org-refile         :after (lambda (&rest _) (org-save-all-org-buffers)))
