@@ -117,7 +117,13 @@
          (file+headline "~/org/inbox.org" "Inbox")
          "* TODO %?\n")))
   (org-agenda-custom-commands
-   '(("n" "List of all NEXT entries" todo "NEXT")))
+   '(("a" "Agenda for current week or day"
+      ((agenda "")
+       (todo "NEXT"
+             ((org-agenda-overriding-header "\nTasks\n")))
+       (tags "CLOSED>=\"<today>\""
+             ((org-agenda-overriding-header "\nCompleted today\n")))))
+     ("n" "List of all NEXT entries" todo "NEXT")))
   :config
   ;; Automatically save all org buffers after org operations.
   (advice-add 'org-refile         :after (lambda (&rest _) (org-save-all-org-buffers)))
