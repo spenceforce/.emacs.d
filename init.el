@@ -77,7 +77,8 @@
   (("C-c j" . aidermacs-transient-menu))
   :custom
   (aidermacs-use-architect-mode t)
-  (aidermacs-show-diff-after-change t))
+  (aidermacs-show-diff-after-change t)
+  (aidermacs-comint-multiline-newline-key "S-<return>"))
 
 
 ;;; Magit because of course.
