@@ -41,6 +41,12 @@
   (conda-mode-line-setup))
 
 
+;;; Godot support.
+(use-package gdscript-mode
+  :ensure t
+  :hook (gdscript-mode . eglot-ensure))
+
+
 ;;; IPython REPL cause it's better than Python.
 (use-package python
   :ensure t
