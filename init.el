@@ -144,11 +144,6 @@
             org-store-log-note
             org-todo
             org-priority)))
-  ;; (advice-add 'org-refile         :after (lambda (&rest _) (org-save-all-org-buffers)))
-  ;; (advice-add 'org-deadline       :after (lambda (&rest _) (org-save-all-org-buffers)))
-  ;; (advice-add 'org-schedule       :after (lambda (&rest _) (org-save-all-org-buffers)))
-  ;; (advice-add 'org-store-log-note :after (lambda (&rest _) (org-save-all-org-buffers)))
-  ;; (advice-add 'org-todo           :after (lambda (&rest _) (org-save-all-org-buffers))))
 
 
 ;;; General emacs settings.
