@@ -113,7 +113,7 @@
    ("C-c c" . org-capture))
   :custom
   (org-log-done t)
-  (org-todo-keywords '((sequence "TODO" "NEXT" "|" "DONE")))
+  (org-todo-keywords '((sequence "TODO" "NEXT" "|" "DONE" "INACTIVE")))
   (org-agenda-files '("~/org/tasks.org" ;One off tasks
                       "~/org/projects"))  ;All project org files
   (org-refile-targets '((org-agenda-files :maxlevel . 1)
