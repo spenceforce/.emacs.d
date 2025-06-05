@@ -74,7 +74,8 @@
 (use-package gptel
   :ensure t
   :custom
-  (gptel--system-message (concat gptel--system-message " Ask clarifying questions if you do not understand. Ask questions one at a time. Let's think step by step.")))
+  (gptel--system-message (concat gptel--system-message " Ask clarifying questions if you do not understand. Ask questions one at a time. Let's think step by step."))
+  (add-hook 'gptel-post-stream-hook 'gptel-auto-scroll))
 
 
 ;;; AI pair programming
