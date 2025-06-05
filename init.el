@@ -114,11 +114,12 @@
   :custom
   (org-log-done t)
   (org-todo-keywords '((sequence "TODO" "NEXT" "|" "DONE")))
-  (org-agenda-files '("~/org/inbox.org" ;Capture todos
-                      "~/org/tasks.org" ;One off tasks
-                      "~/org/projects"  ;All project org files
-                      "~/org/someday.org")) ;Someday/future ideas
-  (org-refile-targets '((org-agenda-files :maxlevel . 1)))
+  (org-agenda-files '("~/org/tasks.org" ;One off tasks
+                      "~/org/projects"))  ;All project org files
+  (org-refile-targets '((org-agenda-files :maxlevel . 1)
+                        ("~/org/someday.org" :maxlevel . 1)
+                        ("~/org/reference.org" :maxlevel . 1)
+                        ("~/org/someday" :maxlevel . 1)))
   (org-capture-templates
    '(("t" "Todo [inbox]" entry
          (file+headline "~/org/inbox.org" "Inbox")
@@ -133,11 +134,21 @@
      ("n" "List of all NEXT entries" todo "NEXT")))
   :config
   ;; Automatically save all org buffers after org operations.
-  (advice-add 'org-refile         :after (lambda (&rest _) (org-save-all-org-buffers)))
-  (advice-add 'org-deadline       :after (lambda (&rest _) (org-save-all-org-buffers)))
-  (advice-add 'org-schedule       :after (lambda (&rest _) (org-save-all-org-buffers)))
-  (advice-add 'org-store-log-note :after (lambda (&rest _) (org-save-all-org-buffers)))
-  (advice-add 'org-todo           :after (lambda (&rest _) (org-save-all-org-buffers))))
+  (mapcar (lambda (f)
+            (advice-add f :after (lambda (&rest _) (org-save-all-org-buffers)))
+            )
+          '(org-capture
+            org-refile
+            org-deadline
+            org-schedule
+            org-store-log-note
+            org-todo
+            org-priority)))
+  ;; (advice-add 'org-refile         :after (lambda (&rest _) (org-save-all-org-buffers)))
+  ;; (advice-add 'org-deadline       :after (lambda (&rest _) (org-save-all-org-buffers)))
+  ;; (advice-add 'org-schedule       :after (lambda (&rest _) (org-save-all-org-buffers)))
+  ;; (advice-add 'org-store-log-note :after (lambda (&rest _) (org-save-all-org-buffers)))
+  ;; (advice-add 'org-todo           :after (lambda (&rest _) (org-save-all-org-buffers))))
 
 
 ;;; General emacs settings.
