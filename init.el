@@ -74,8 +74,14 @@
 (use-package gptel
   :ensure t
   :custom
-  (gptel--system-message (concat gptel--system-message " Ask clarifying questions if you do not understand. Ask questions one at a time. Let's think step by step."))
-  (add-hook 'gptel-post-stream-hook 'gptel-auto-scroll))
+  (gptel-default-mode org-mode)
+  :config
+  (add-hook 'gptel-post-stream-hook 'gptel-auto-scroll)
+  (let ((prompt-appendix " Ask clarifying questions if you do not understand. Ask questions one at a time. Let's think step by step."))
+    ;; Add prompt appendix to system message if it is not already present.
+    (when (not (string-match-p prompt-appendix gptel--system-message))
+      (setq gptel--system-message
+            (concat gptel--system-message " " prompt-appendix)))))
 
 
 ;;; AI pair programming
