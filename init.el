@@ -62,12 +62,12 @@
   (when (functionp 'json-parse-string)
     (add-hook 'git-commit-setup-hook 'copilot-chat-insert-commit-message)))
 (use-package copilot
- :ensure t
- :config
- (add-hook 'prog-mode-hook 'copilot-mode)
- (define-key copilot-completion-map (kbd "<tab>") 'copilot-accept-completion)
- (define-key copilot-completion-map (kbd "TAB") 'copilot-accept-completion)
- (add-to-list 'copilot-indentation-alist '(emacs-lisp-mode 2)))
+  :ensure t
+  :config
+  (add-hook 'prog-mode-hook 'copilot-mode)
+  (define-key copilot-completion-map (kbd "<tab>") 'copilot-accept-completion)
+  (define-key copilot-completion-map (kbd "TAB") 'copilot-accept-completion)
+  (add-to-list 'copilot-indentation-alist '(emacs-lisp-mode 2)))
 
 
 ;;; GPT chatbot
@@ -131,8 +131,8 @@
                         ("~/org/someday" :maxlevel . 1)))
   (org-capture-templates
    '(("t" "Todo [inbox]" entry
-         (file+headline "~/org/inbox.org" "Inbox")
-         "* TODO %?\n")))
+      (file+headline "~/org/inbox.org" "Inbox")
+      "* TODO %?\n")))
   (org-agenda-custom-commands
    '(("a" "Agenda for current week or day"
       ((agenda "")
