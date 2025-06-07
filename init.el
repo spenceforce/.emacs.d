@@ -119,6 +119,21 @@
 ;;; Org mode.
 (use-package org
   :ensure t
+  :init
+  (defun list-someday-org-files ()
+    "Return a list of full file paths for all files with the .org extension
+in `~/org/someday`."
+    (let* ((all-files (directory-files "~/org/someday" nil)) ;; Get just the file names
+           (target-extension "org")
+           (org-file-names
+            (seq-filter
+             (lambda (file)
+               (string-equal (file-name-extension file) target-extension))
+             all-files)))
+      ;; Now, prepend "~/org/someday" to each of the filtered file names
+      (mapcar (lambda (file-name)
+                (expand-file-name file-name "~/org/someday"))
+              org-file-names)))
   :bind
   (("C-c l" . org-store-link)
    ("C-c a" . org-agenda)
@@ -131,7 +146,7 @@
   (org-refile-targets '((org-agenda-files :maxlevel . 1)
                         ("~/org/someday.org" :maxlevel . 1)
                         ("~/org/reference.org" :maxlevel . 1)
-                        ("~/org/someday" :maxlevel . 1)))
+                        (list-someday-org-files :maxlevel . 1)))
   (org-capture-templates
    '(("t" "Todo [inbox]" entry
       (file+headline "~/org/inbox.org" "Inbox")
