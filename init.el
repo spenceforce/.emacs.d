@@ -76,7 +76,10 @@
   :custom
   (gptel-default-mode 'org-mode)
   :config
+  ;; Auto scroll to bottom of chat buffer.
   (add-hook 'gptel-post-stream-hook 'gptel-auto-scroll)
+  ;; Wrap lines in gptel mode.
+  (add-hook 'gptel-mode-hook 'visual-line-mode)
   (let ((prompt-appendix " Ask clarifying questions if you do not understand. Ask questions one at a time. Let's think step by step."))
     ;; Add prompt appendix to system message if it is not already present.
     (when (not (string-match-p prompt-appendix gptel--system-message))
