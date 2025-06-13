@@ -81,7 +81,7 @@
   ;; Wrap lines in gptel mode.
   (add-hook 'gptel-mode-hook 'visual-line-mode)
   ;; Append extra prompt to default directive when not present.
-  (let ((suffix " Ask clarifying questions if you do not understand. Ask questions one at a time. Let's think step by step."))
+  (let ((suffix " Ask clarifying questions if you do not understand. Ask questions one at a time. Use lists sparingly. Let's think step by step."))
     (when (not (string-match-p suffix (alist-get 'default gptel-directives)))
       (let ((prompt  (concat (alist-get 'default gptel-directives) suffix)))
         ;; Set system message to prompt if it is the same as default.
