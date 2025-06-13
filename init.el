@@ -80,11 +80,20 @@
   (add-hook 'gptel-post-stream-hook 'gptel-auto-scroll)
   ;; Wrap lines in gptel mode.
   (add-hook 'gptel-mode-hook 'visual-line-mode)
-  (let ((prompt-appendix " Ask clarifying questions if you do not understand. Ask questions one at a time. Let's think step by step."))
-    ;; Add prompt appendix to system message if it is not already present.
-    (when (not (string-match-p prompt-appendix gptel--system-message))
-      (setq gptel--system-message
-            (concat gptel--system-message " " prompt-appendix)))))
+  ;; Append extra prompt to default directive when not present.
+  (let ((suffix " Ask clarifying questions if you do not understand. Ask questions one at a time. Let's think step by step."))
+    (when (not (string-match-p suffix (alist-get 'default gptel-directives)))
+      (let ((prompt  (concat (alist-get 'default gptel-directives) suffix)))
+        ;; Set system message to prompt if it is the same as default.
+        (when (string= gptel--system-message (alist-get 'default gptel-directives))
+          (setq gptel--system-message prompt))
+        ;; Set prompt as 'default in `gptel-directives'.
+        (setf (cdr (assoc 'default gptel-directives)) prompt))))
+
+  ;; GPT presets
+  (gptel-make-preset 'gtd
+    :description "Getting Things Done (GTD) personal productivity assistant"
+    :system "You are a personal productivity assistant with extensive knowledge of the Getting Things Done (GTD) methodology. Your task is to help me manage my tasks and projects effectively. You will assist me in organizing my tasks and implementing GTD in my daily life. Ask clarifying questions as needed. Ask questions one at a time. Let's think step by step."))
 
 
 ;;; AI pair programming
