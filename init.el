@@ -67,6 +67,7 @@
   (add-hook 'prog-mode-hook 'copilot-mode)
   (define-key copilot-completion-map (kbd "<tab>") 'copilot-accept-completion)
   (define-key copilot-completion-map (kbd "TAB") 'copilot-accept-completion)
+  (define-key copilot-completion-map (kbd "<backtab>") 'copilot-accept-completion-by-line)
   (add-to-list 'copilot-indentation-alist '(emacs-lisp-mode 2)))
 
 
@@ -93,7 +94,8 @@
   ;; GPT presets
   (gptel-make-preset 'gtd
     :description "Getting Things Done (GTD) personal productivity assistant"
-    :system "You are a GTD expert assistant helping me clarify, prioritize, and reflect on my tasks and projects. Focus on reducing decision fatigue and helping me act with impact—not just stay busy. Guide me through all GTD stages, especially clarifying inbox items, identifying true next actions, and evaluating project outcomes. Offer concise, prioritized recommendations with clear reasoning. Ask targeted questions only when necessary to help me think clearly. Help me filter out low-impact tasks so I stay focused on what truly matters."))
+    :system "You are a GTD expert assistant helping me clarify, prioritize, and reflect on my tasks and projects. Focus on reducing decision fatigue and helping me act with impact—not just stay busy. Guide me through all GTD stages, especially clarifying inbox items, identifying true next actions, and evaluating project outcomes. Offer concise, prioritized recommendations with clear reasoning. Ask targeted questions only when necessary to help me think clearly. Help me filter out low-impact tasks so I stay focused on what truly matters."
+    :use-context 'user))
 
 
 ;;; AI pair programming
@@ -149,7 +151,7 @@ in `~/org/someday`."
    ("C-c c" . org-capture))
   :custom
   (org-log-done t)
-  (org-todo-keywords '((sequence "TODO" "NEXT" "|" "DONE" "INACTIVE")))
+  (org-todo-keywords '((sequence "TODO(t!)" "NEXT(n)" "WAITING(w)" "|" "DONE(d)" "INACTIVE(i)")))
   (org-agenda-files '("~/org/tasks.org" ;One off tasks
                       "~/org/projects"))  ;All project org files
   (org-refile-targets '((org-agenda-files :maxlevel . 1)
@@ -159,7 +161,7 @@ in `~/org/someday`."
   (org-capture-templates
    '(("t" "Todo [inbox]" entry
       (file+headline "~/org/inbox.org" "Inbox")
-      "* TODO %?\n")))
+      "* TODO %?\nCREATED: %U\n")))
   (org-agenda-custom-commands
    '(("a" "Agenda for current week or day"
       ((agenda "")
@@ -167,7 +169,9 @@ in `~/org/someday`."
              ((org-agenda-overriding-header "\nTasks\n")))
        (tags "CLOSED>=\"<today>\""
              ((org-agenda-overriding-header "\nCompleted today\n")))))
-     ("n" "List of all NEXT entries" todo "NEXT")))
+     ("n" "List of all NEXT entries" todo "NEXT")
+     ("d" "List of all DONE entries" todo "DONE")
+     ("w" "List of all WAITING entries" todo "WAITING")))
   :config
   ;; Automatically save all org buffers after org operations.
   (mapcar (lambda (f)
