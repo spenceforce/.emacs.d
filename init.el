@@ -36,7 +36,7 @@
 (use-package conda
   :ensure t
   :custom
-  (conda-anaconda-home (car (seq-filter #'file-exists-p (mapcar #'expand-file-name '("~/anaconda3" "~/miniforge3" )))))
+  (conda-anaconda-home (car (seq-filter #'file-exists-p (mapcar #'expand-file-name '("~/anaconda3" "~/miniforge3")))))
   :config
   (conda-mode-line-setup))
 
@@ -74,10 +74,11 @@
 ;;; GPT chatbot
 (use-package gptel
   :ensure t
+  :bind
+  (("C-c g" . 'gptel-menu))
   :custom
   (gptel-default-mode 'org-mode)
   :config
-  ;; Auto scroll to bottom of chat buffer.
   (add-hook 'gptel-post-stream-hook 'gptel-auto-scroll)
   ;; Wrap lines in gptel mode.
   (add-hook 'gptel-mode-hook 'visual-line-mode)
@@ -94,7 +95,7 @@
   ;; GPT presets
   (gptel-make-preset 'gtd
     :description "Getting Things Done (GTD) personal productivity assistant"
-    :system "You are a GTD expert assistant helping me clarify, prioritize, and reflect on my tasks and projects. Focus on reducing decision fatigue and helping me act with impact—not just stay busy. Guide me through all GTD stages, especially clarifying inbox items, identifying true next actions, and evaluating project outcomes. Offer concise, prioritized recommendations with clear reasoning. Ask targeted questions, one at a time, only when necessary to help me think clearly. Help me filter out low-impact tasks so I stay focused on what truly matters."
+    :system "You are a GTD expert assistant helping me clarify, prioritize, and reflect on my tasks and projects. Focus on reducing decision fatigue and helping me act with impact—not just stay busy. Guide me through all GTD stages, especially clarifying inbox items, identifying true next actions, and evaluating project outcomes. Offer concise, prioritized recommendations with clear reasoning. Ask targeted questions, one at a time, to gather necessary context to complete the task at hand. Help me filter out low-impact tasks so I stay focused on what truly matters."
     :use-context 'user))
 
 
