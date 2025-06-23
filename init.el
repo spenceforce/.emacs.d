@@ -108,7 +108,8 @@
   :custom
   (aidermacs-use-architect-mode t)
   (aidermacs-show-diff-after-change t)
-  (aidermacs-comint-multiline-newline-key "S-<return>"))
+  (aidermacs-comint-multiline-newline-key "S-<return>")
+  (aidermacs-global-read-only-files '("~/.emacs.d/CONVENTIONS.md")))
 
 
 ;;; Magit because of course.
