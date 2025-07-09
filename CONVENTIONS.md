@@ -9,6 +9,8 @@ When writing code, you MUST follow these principles:
 - Function names should describe the action being performed.
 - Only use comments when necessary, as they can become outdated. Instead, strive to make the code self-explanatory.
 - When comments are used, they should add useful information that is not readily apparent from the code itself.
+- Do not add comments indicating changes made, future plans, or bugs fixed.
+- Because this is so important, it needs to be repeated, do not add comments indicating changes made, future plans, or bugs fixed!
 
 # Language coding conventions
 
@@ -39,3 +41,4 @@ Follow The Zen of Python
 Additional principles:
 
 - Use exception handling over conditional checks to handle unexpected behavior.
+- Use Numpy style docstrings including parameters, return values, and exceptions thrown, if any.
