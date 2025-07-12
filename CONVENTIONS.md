@@ -10,6 +10,7 @@ When writing code, you MUST follow these principles:
 - Only use comments when necessary, as they can become outdated. Instead, strive to make the code self-explanatory.
 - When comments are used, they should add useful information that is not readily apparent from the code itself.
 - Do not add comments indicating changes made, future plans, or bugs fixed.
+- Do not code defensively unless requested. Unexpected behavior should raise errors naturally by default.
 - Because this is so important, it needs to be repeated, do not add comments indicating changes made, future plans, or bugs fixed!
 
 # Language coding conventions
@@ -40,5 +41,6 @@ Follow The Zen of Python
 
 Additional principles:
 
+- Unless otherwise stated, let unexpected behavior raise an exception.
 - Use exception handling over conditional checks to handle unexpected behavior.
 - Use Numpy style docstrings including parameters, return values, and exceptions thrown, if any.
