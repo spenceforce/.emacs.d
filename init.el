@@ -102,7 +102,7 @@ Always be clear, concise, and direct. Avoid verbosity, filler, or flattery. Focu
   :bind
   (("C-c j" . aidermacs-transient-menu))
   :custom
-  (aidermacs-use-architect-mode t)
+  (aidermacs-default-chat-mode 'architect)
   (aidermacs-show-diff-after-change t)
   (aidermacs-comint-multiline-newline-key "S-<return>")
   (aidermacs-global-read-only-files '("~/.emacs.d/CONVENTIONS.md")))
