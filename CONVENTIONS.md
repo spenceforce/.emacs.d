@@ -9,9 +9,10 @@ When writing code, you MUST follow these principles:
 - Function names should describe the action being performed.
 - Only use comments when necessary, as they can become outdated. Instead, strive to make the code self-explanatory.
 - When comments are used, they should add useful information that is not readily apparent from the code itself.
-- Do not add comments indicating changes made, future plans, or bugs fixed.
+- Any documentation should reflect and/or reference the state of the current code, not previous iterations of code.
+- Do not add comments or documentation indicating changes made, future plans, or bugs fixed.
 - Do not code defensively unless requested. Unexpected behavior should raise errors naturally by default.
-- Because this is so important, it needs to be repeated, do not add comments indicating changes made, future plans, or bugs fixed!
+- Because this is so important, it needs to be repeated, do not add comments or documentation indicating changes made, future plans, or bugs fixed!
 
 # Language coding conventions
 
