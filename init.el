@@ -55,6 +55,13 @@
   (python-shell-interpreter-args "--simple-prompt -i --InteractiveShell.display_page=True"))
 
 
+;;; TypeScript support.
+(use-package typescript-ts-mode
+  :ensure t
+  :mode (("\\.ts\\'" . typescript-ts-mode)
+         ("\\.tsx\\'" . tsx-ts-mode)))
+
+
 ;;; GitHub Copilot
 (use-package copilot-chat
   :ensure t
@@ -178,7 +185,7 @@ in `~/org/someday`."
           '(org-capture
             org-refile
             org-deadline
-            org-schedule
+            org-schedulep
             org-store-log-note
             org-todo
             org-priority)))
