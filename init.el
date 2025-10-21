@@ -57,7 +57,7 @@
 
 ;;; TypeScript support.
 (use-package typescript-ts-mode
-  :ensure t
+  :if (locate-library "treesit")
   :mode (("\\.ts\\'" . typescript-ts-mode)
          ("\\.tsx\\'" . tsx-ts-mode)))
 
