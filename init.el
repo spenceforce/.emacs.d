@@ -1,12 +1,26 @@
 ;;; Emacs init file.
 ;;; Any custom or host specific configuration should be placed in `~/.emacs.d/site-lisp/default.el`.
 
+;;; Set up straight.
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name
+        "straight/repos/straight.el/bootstrap.el"
+        (or (bound-and-true-p straight-base-dir)
+            user-emacs-directory)))
+      (bootstrap-version 7))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
 
-;;; Add MELPA to repo.
-(use-package package
-  :config
-  (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-  (package-initialize))
+;;; Use-package
+(straight-use-package 'use-package)
+(setq straight-use-package-by-default t)
 
 
 ;;; Clean up old buffers.
@@ -221,7 +235,8 @@ in `~/org/someday`."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(modus-themes better-defaults magit aidermacs gptel copilot copilot-chat conda corfu ivy)))
+   '(aidermacs better-defaults conda copilot copilot-chat corfu
+	       gdscript-mode gptel ivy magit modus-themes)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
