@@ -146,65 +146,6 @@ Be concise, direct, and focused; avoid verbosity, padding, praise, and excessive
   (load-theme 'modus-vivendi :no-confirm))
 
 
-;;; Org mode.
-(use-package org
-  :ensure t
-  :init
-  (defun list-someday-org-files ()
-    "Return a list of full file paths for all files with the .org extension
-in `~/org/someday`."
-    (let* ((all-files (directory-files "~/org/someday" nil)) ;; Get just the file names
-           (target-extension "org")
-           (org-file-names
-            (seq-filter
-             (lambda (file)
-               (string-equal (file-name-extension file) target-extension))
-             all-files)))
-      ;; Now, prepend "~/org/someday" to each of the filtered file names
-      (mapcar (lambda (file-name)
-                (expand-file-name file-name "~/org/someday"))
-              org-file-names)))
-  :bind
-  (("C-c l" . org-store-link)
-   ("C-c a" . org-agenda)
-   ("C-c c" . org-capture))
-  :custom
-  (org-log-done t)
-  (org-todo-keywords '((sequence "TODO(t!)" "NEXT(n)" "WAITING(w)" "|" "DONE(d)" "INACTIVE(i)")))
-  (org-agenda-files '("~/org/tasks.org" ;One off tasks
-                      "~/org/projects"))  ;All project org files
-  (org-refile-targets '((org-agenda-files :maxlevel . 1)
-                        ("~/org/someday.org" :maxlevel . 1)
-                        ("~/org/reference.org" :maxlevel . 1)
-                        (list-someday-org-files :maxlevel . 1)))
-  (org-capture-templates
-   '(("t" "Todo [inbox]" entry
-      (file+headline "~/org/inbox.org" "Inbox")
-      "* TODO %?\nCREATED: %U\n")))
-  (org-agenda-custom-commands
-   '(("a" "Agenda for current week or day"
-      ((agenda "")
-       (todo "NEXT"
-             ((org-agenda-overriding-header "\nTasks\n")))
-       (tags "CLOSED>=\"<today>\""
-             ((org-agenda-overriding-header "\nCompleted today\n")))))
-     ("n" "List of all NEXT entries" todo "NEXT")
-     ("d" "List of all DONE entries" todo "DONE")
-     ("w" "List of all WAITING entries" todo "WAITING")))
-  :config
-  ;; Automatically save all org buffers after org operations.
-  (mapcar (lambda (f)
-            (advice-add f :after (lambda (&rest _) (org-save-all-org-buffers)))
-            )
-          '(org-capture
-            org-refile
-            org-deadline
-            org-schedulep
-            org-store-log-note
-            org-todo
-            org-priority)))
-
-
 ;;; General emacs settings.
 (use-package emacs
   :custom
