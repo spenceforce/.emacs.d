@@ -55,6 +55,12 @@
   (conda-mode-line-setup))
 
 
+;;; uv support.
+(use-package uv-mode
+  :ensure t
+  :hook (python-mode . uv-mode-auto-activate-hook))
+
+
 ;;; Godot support.
 (use-package gdscript-mode
   :ensure t
@@ -144,6 +150,11 @@ Be concise, direct, and focused; avoid verbosity, padding, praise, and excessive
   :ensure t
   :config
   (load-theme 'modus-vivendi :no-confirm))
+
+
+;;; YAML support.
+(use-package yaml-mode
+  :ensure t)
 
 
 ;;; General emacs settings.
