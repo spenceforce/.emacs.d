@@ -157,6 +157,21 @@ Be concise, direct, and focused; avoid verbosity, padding, praise, and excessive
   :ensure t)
 
 
+;;; Treesitter
+(use-package treesit
+  :defer
+  :straight (:type built-in)
+  :if (and (fboundp 'treesit-available-p) (treesit-available-p))
+  :custom
+  (treesit-language-source-alist
+   (append treesit-language-source-alist
+           '((tsx . ("https://github.com/tree-sitter/tree-sitter-typescript" "master" "tsx/src"))
+             (typescript . ("https://github.com/tree-sitter/tree-sitter-typescript" "master" "typescript/src")))))
+  :config
+  (treesit-install-language-grammar 'tsx)
+  (treesit-install-language-grammar 'typescript))
+
+
 ;;; General emacs settings.
 (use-package emacs
   :custom
