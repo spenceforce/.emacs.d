@@ -130,8 +130,7 @@ Be concise, direct, and focused; avoid verbosity, padding, praise, and excessive
   (("C-c j" . aidermacs-transient-menu))
   :custom
   (aidermacs-show-diff-after-change t)
-  (aidermacs-comint-multiline-newline-key "S-<return>")
-  (aidermacs-global-read-only-files '("~/.emacs.d/CONVENTIONS.md")))
+  (aidermacs-comint-multiline-newline-key "S-<return>"))
 
 
 ;;; Magit because of course.
