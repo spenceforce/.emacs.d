@@ -27,7 +27,7 @@
 (use-package midnight
   :ensure t
   :config
-  (midnight-delay-set))
+  (midnight-mode))
 
 
 ;;; Completion buffers.
