@@ -25,7 +25,9 @@
 
 ;;; Clean up old buffers.
 (use-package midnight
-  :ensure t)
+  :ensure t
+  :config
+  (midnight-delay-set))
 
 
 ;;; Completion buffers.
@@ -129,6 +131,7 @@ Be concise, direct, and focused; avoid verbosity, padding, praise, and excessive
   :bind
   (("C-c j" . aidermacs-transient-menu))
   :custom
+  (aidermacs-program "aider")
   (aidermacs-show-diff-after-change t)
   (aidermacs-comint-multiline-newline-key "S-<return>"))
 
