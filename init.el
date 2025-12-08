@@ -27,7 +27,7 @@
 (use-package midnight
   :ensure t
   :config
-  (midnight-delay-set))
+  (midnight-mode))
 
 
 ;;; Completion buffers.
@@ -55,12 +55,6 @@
   (conda-anaconda-home (car (seq-filter #'file-exists-p (mapcar #'expand-file-name '("~/anaconda3" "~/miniforge3")))))
   :config
   (conda-mode-line-setup))
-
-
-;;; uv support.
-(use-package uv-mode
-  :ensure t
-  :hook (python-mode . uv-mode-auto-activate-hook))
 
 
 ;;; Godot support.
