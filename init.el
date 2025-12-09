@@ -127,7 +127,8 @@ Be concise, direct, and focused; avoid verbosity, padding, praise, and excessive
   :custom
   (aidermacs-program "aider")
   (aidermacs-show-diff-after-change t)
-  (aidermacs-comint-multiline-newline-key "S-<return>"))
+  (aidermacs-comint-multiline-newline-key "S-<return>")
+  (aidermacs-default-chat-mode 'ask))
 
 
 ;;; Magit because of course.
