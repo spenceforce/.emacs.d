@@ -131,6 +131,13 @@ Be concise, direct, and focused; avoid verbosity, padding, praise, and excessive
   (aidermacs-default-chat-mode 'architect))
 
 
+(use-package agent-shell
+    :ensure t
+    :ensure-system-package
+    ;; Add agent installation configs here
+    ((cline . "npm install -g cline")))
+
+
 ;;; Magit because of course.
 (use-package magit
   :ensure t)
