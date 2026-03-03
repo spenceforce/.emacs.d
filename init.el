@@ -25,14 +25,12 @@
 
 ;;; Clean up old buffers.
 (use-package midnight
-  :ensure t
   :config
   (midnight-mode))
 
 
 ;;; Completion buffers.
 (use-package ivy
-  :ensure t
   :custom
   (ivy-use-selectable-prompt t)
   :config
@@ -43,14 +41,12 @@
 
 ;;; Completion at point.
 (use-package corfu
-  :ensure t
   :init
   (global-corfu-mode))
 
 
 ;;; Conda env support.
 (use-package conda
-  :ensure t
   :custom
   (conda-anaconda-home (car (seq-filter #'file-exists-p (mapcar #'expand-file-name '("~/anaconda3" "~/miniforge3")))))
   :config
@@ -59,13 +55,11 @@
 
 ;;; Godot support.
 (use-package gdscript-mode
-  :ensure t
   :hook (gdscript-mode . eglot-ensure))
 
 
 ;;; IPython REPL cause it's better than Python.
 (use-package python
-  :ensure t
   :custom
   (python-shell-interpreter "ipython")
   (python-shell-interpreter-args "--simple-prompt -i --InteractiveShell.display_page=True"))
@@ -80,12 +74,10 @@
 
 ;;; GitHub Copilot
 (use-package copilot-chat
-  :ensure t
   :config
   (when (functionp 'json-parse-string)
     (add-hook 'git-commit-setup-hook 'copilot-chat-insert-commit-message)))
 (use-package copilot
-  :ensure t
   :custom
   (copilot-idle-delay 1)
   :config
@@ -98,7 +90,6 @@
 
 ;;; GPT chatbot
 (use-package gptel
-  :ensure t
   :bind
   (("C-c g" . 'gptel-menu))
   :custom
@@ -121,7 +112,6 @@ Be concise, direct, and focused; avoid verbosity, padding, praise, and excessive
 ;;; AI pair programming
 (use-package aidermacs
   ;; Set API key in `site-lisp/default.el`.
-  :ensure t
   :bind
   (("C-c j" . aidermacs-transient-menu))
   :custom
@@ -133,24 +123,23 @@ Be concise, direct, and focused; avoid verbosity, padding, praise, and excessive
 
 ;;; Magit because of course.
 (use-package magit
-  :ensure t)
+  )
 
 
 ;;; Better defaults please.
 (use-package better-defaults
-  :ensure t)
+  )
 
 
 ;;; Theme time.
 (use-package modus-themes
-  :ensure t
   :config
   (load-theme 'modus-vivendi :no-confirm))
 
 
 ;;; YAML support.
 (use-package yaml-mode
-  :ensure t)
+  )
 
 
 ;;; Treesitter
@@ -197,9 +186,8 @@ Be concise, direct, and focused; avoid verbosity, padding, praise, and excessive
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   '(aidermacs better-defaults conda copilot copilot-chat corfu
-	       gdscript-mode gptel ivy magit modus-themes)))
+ '(package-vc-selected-packages
+   '((eca :url "https://github.com/editor-code-assistant/eca-emacs"))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
