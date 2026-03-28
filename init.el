@@ -123,6 +123,8 @@ Be concise, direct, and focused; avoid verbosity, padding, praise, and excessive
 (use-package claude-code-ide
   :straight (:type git :host github :repo "manzaltu/claude-code-ide.el")
   :bind ("C-c C-'" . claude-code-ide-menu) ; Set your favorite keybinding
+  :custom
+  (claude-code-ide-terminal-backend 'eat)
   :config
   (claude-code-ide-emacs-tools-setup)) ; Optionally enable Emacs MCP tools
 
@@ -143,6 +145,10 @@ Be concise, direct, and focused; avoid verbosity, padding, praise, and excessive
 
 ;;; YAML support.
 (use-package yaml-mode)
+
+
+;;; Terminal support
+(use-package eat)
 
 
 ;;; Treesitter
