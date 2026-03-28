@@ -120,15 +120,19 @@ Be concise, direct, and focused; avoid verbosity, padding, praise, and excessive
   (aidermacs-comint-multiline-newline-key "S-<return>")
   (aidermacs-default-chat-mode 'architect))
 
+(use-package claude-code-ide
+  :straight (:type git :host github :repo "manzaltu/claude-code-ide.el")
+  :bind ("C-c C-'" . claude-code-ide-menu) ; Set your favorite keybinding
+  :config
+  (claude-code-ide-emacs-tools-setup)) ; Optionally enable Emacs MCP tools
+
 
 ;;; Magit because of course.
-(use-package magit
-  )
+(use-package magit)
 
 
 ;;; Better defaults please.
-(use-package better-defaults
-  )
+(use-package better-defaults)
 
 
 ;;; Theme time.
@@ -138,8 +142,7 @@ Be concise, direct, and focused; avoid verbosity, padding, praise, and excessive
 
 
 ;;; YAML support.
-(use-package yaml-mode
-  )
+(use-package yaml-mode)
 
 
 ;;; Treesitter
