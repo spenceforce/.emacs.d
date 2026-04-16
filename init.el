@@ -112,8 +112,6 @@ Be concise, direct, and focused; avoid verbosity, padding, praise, and excessive
 ;;; AI pair programming
 (use-package aidermacs
   ;; Set API key in `site-lisp/default.el`.
-  :bind
-  (("C-c j" . aidermacs-transient-menu))
   :custom
   (aidermacs-program "aider")
   (aidermacs-show-diff-after-change t)
@@ -122,7 +120,7 @@ Be concise, direct, and focused; avoid verbosity, padding, praise, and excessive
 
 (use-package claude-code-ide
   :straight (:type git :host github :repo "manzaltu/claude-code-ide.el")
-  :bind ("C-c C-'" . claude-code-ide-menu) ; Set your favorite keybinding
+  :bind ("C-c j" . claude-code-ide-menu) ; Set your favorite keybinding
   :custom
   (claude-code-ide-terminal-backend 'eat)
   :config
