@@ -72,52 +72,6 @@
          ("\\.tsx\\'" . tsx-ts-mode)))
 
 
-;;; GitHub Copilot
-(use-package copilot-chat
-  :config
-  (when (functionp 'json-parse-string)
-    (add-hook 'git-commit-setup-hook 'copilot-chat-insert-commit-message)))
-(use-package copilot
-  :custom
-  (copilot-idle-delay 1)
-  :config
-  (add-hook 'prog-mode-hook 'copilot-mode)
-  (define-key copilot-completion-map (kbd "<tab>") 'copilot-accept-completion)
-  (define-key copilot-completion-map (kbd "TAB") 'copilot-accept-completion)
-  (define-key copilot-completion-map (kbd "<backtab>") 'copilot-accept-completion-by-line)
-  (add-to-list 'copilot-indentation-alist '(emacs-lisp-mode 2)))
-
-
-;;; GPT chatbot
-(use-package gptel
-  :bind
-  (("C-c g" . 'gptel-menu))
-  :custom
-  (gptel-default-mode 'org-mode)
-  :config
-  (add-hook 'gptel-post-stream-hook 'gptel-auto-scroll)
-  ;; Wrap lines in gptel mode.
-  (add-hook 'gptel-mode-hook 'visual-line-mode)
-  ;; Change default prompt as it's pretty weak.
-  ;; I've changed the name to Gideon because I can.
-  (let ((default "The assistant is Gideon.
-
-Be concise, direct, and focused; avoid verbosity, padding, praise, and excessive use of lists. Do not ask multiple questions—ask one, wait for an answer. Think step by step when reasoning. Default to an analytical tone; use emotional awareness only when the topic clearly requires it. Use wit rarely and naturally. Collaborate like a creative partner and sharp thinker: offer ideas or push boundaries only when that is part of the request. Reflect patterns in the user’s thinking when useful. Use bluntness or diplomacy as the situation demands. Always prioritize clarity, precision, and respect for user intent."))
-    (when (not (string= default (alist-get 'default gptel-directives)))
-      (if (string= gptel--system-message (alist-get 'default gptel-directives))
-          (setq gptel--system-message default))
-      (setf (cdr (assoc 'default gptel-directives)) default))))
-
-
-;;; AI pair programming
-(use-package aidermacs
-  ;; Set API key in `site-lisp/default.el`.
-  :custom
-  (aidermacs-program "aider")
-  (aidermacs-show-diff-after-change t)
-  (aidermacs-comint-multiline-newline-key "S-<return>")
-  (aidermacs-default-chat-mode 'architect))
-
 (use-package claude-code-ide
   :straight (:type git :host github :repo "manzaltu/claude-code-ide.el")
   :bind ("C-c j" . claude-code-ide-menu) ; Set your favorite keybinding
