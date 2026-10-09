@@ -1,4 +1,4 @@
-;;; Emacs init file.
+;;; Emacs init file. -*- lexical-binding: t; -*-
 ;;; Any custom or host specific configuration should be placed in `~/.emacs.d/site-lisp/default.el`.
 
 ;;; Set up straight.
